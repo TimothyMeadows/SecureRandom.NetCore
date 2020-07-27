@@ -8,12 +8,16 @@ namespace SecureRandom.NetCore.Examples
         {
             // This is the ideal method for using SecureRandom, it will auto seed based on nano time, and digest length.
             // Further, additional seeding added only serves to strengthen the seed rather than a fix it.
-            // Please use this method if you are not sure what to do!
+            // Please use this constructor if you are not sure what to do!
             var cprng = new SecureRandom();
             cprng.SetSeed(1001); // this is added to the existing seed material but is not required to call.
 
             var randomBytes = cprng.NextBytes(16);
             Console.WriteLine(BitConverter.ToString(randomBytes));
+
+            var nextRandomBytes = new byte[32];
+            cprng.NextBytes(nextRandomBytes);
+            Console.WriteLine(BitConverter.ToString(nextRandomBytes));
 
             // I personally don't consider fixed seeds to be safe for secure applications as it puts your random number generator at risk.
             // However, it is required in some "secure" environment, so for the sake of completeness this ability exists.
