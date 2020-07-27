@@ -86,17 +86,17 @@ Will populate random bytes with offset at length.
 void NextBytes(byte[] bytes, int offset, int length)
 ```
 
-Will return a random double between 0.0, and long.MaxValue.
+Will return a random double between double.MinValue, and double.MaxValue.
 ```csharp
 double NextDouble()
 ```
 
-Will return a random int between 0, and int.MaxValue.
+Will return a random int between int.MinValue, and int.MaxValue.
 ```csharp
 int NextInt()
 ```
 
-Will return a random long between 0, and long.MaxValue.
+Will return a random long between long.MinValue, and long.MaxValue.
 ```csharp
 int NextLong()
 ```
