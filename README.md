@@ -23,7 +23,7 @@ https://www.nuget.org/packages/SecureRandom.NetCore/
 You can find more examples in the github examples project.
 
 ```csharp
-var cprng = new SecureRandom();
+using var cprng = new SecureRandom();
 
 var randomBytes = cprng.NextBytes(16); // create by length
 
