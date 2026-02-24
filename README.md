@@ -3,6 +3,10 @@
 
 Implementation of a cryptographic pseudorandom number generator (CPRNG) using [Blake2b](https://github.com/TimothyMeadows/Blake2b.NetCore). Optimized for [PinnedMemory](https://github.com/TimothyMeadows/PinnedMemory).
 
+## Runtime support
+
+The package now targets **.NET 8** by default.
+
 # Install
 
 From a command prompt
@@ -28,12 +32,14 @@ using var cprng = new SecureRandom();
 var randomBytes = cprng.NextBytes(16); // create by length
 
 var nextRandomBytes = new byte[32];
-cprng.NextBytes(nextRandomBytes); // popualte by size
+cprng.NextBytes(nextRandomBytes); // populate by size
 ```
 
 # Constructor
 
-WARNING: Never set seed to false unless you know what your doing. See example in github for more details.
+> WARNING: Never set `seed` to `false` unless you know what you are doing.
+
+By default, `seed = true` uses the OS entropy provider (`RandomNumberGenerator.Fill`) for secure seed material.
 
 ```csharp
 SecureRandom(int rounds = 10, bool seed = true)
@@ -43,31 +49,31 @@ SecureRandom(int rounds = 10, bool seed = true)
 
 Get the hash output length used when seeding.
 ```csharp
-int GetSeedLength()
+int GetSeedSize()
 ```
 
-Will add bytes to existing seed material, this will be hashed with blake2b.
-```charp
+Will add bytes to existing seed material; this will be hashed with blake2b.
+```csharp
 void SetSeed(byte[] seed)
 ```
 
-Will add number to existing seed material, this will be hashed with blake2b.
-```charp
+Will add number to existing seed material; this will be hashed with blake2b.
+```csharp
 void SetSeed(long seed)
 ```
 
-Will return a random number between 0, and int.MaxValue.
-```charp
+Will return a random number between `0` and `int.MaxValue`.
+```csharp
 int Next()
 ```
 
-Will return a random number between 0, and maxValue.
-```charp
+Will return a random number between `0` and `maxValue`.
+```csharp
 int Next(int maxValue)
 ```
 
-Will return a random number between minValue, and maxValue.
-```charp
+Will return a random number between `minValue` and `maxValue`.
+```csharp
 int Next(int minValue, int maxValue)
 ```
 
@@ -86,22 +92,22 @@ Will populate random bytes with offset at length.
 void NextBytes(byte[] bytes, int offset, int length)
 ```
 
-Will return a random double between double.MinValue, and double.MaxValue.
+Will return a random double.
 ```csharp
 double NextDouble()
 ```
 
-Will return a random int between int.MinValue, and int.MaxValue.
+Will return a random int between `int.MinValue` and `int.MaxValue`.
 ```csharp
 int NextInt()
 ```
 
-Will return a random long between long.MinValue, and long.MaxValue.
+Will return a random long between `long.MinValue` and `long.MaxValue`.
 ```csharp
-int NextLong()
+long NextLong()
 ```
 
-Will free state, and all seed material.
+Will free state and all seed material.
 ```csharp
 void Dispose()
 ```

@@ -1,8 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
     <Authors>Timothy D Meadows II</Authors>
     <Description>Implementation of a cryptographic pseudorandom number generator (CPRNG) using Blake2b. Optimized for PinnedMemory.</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -12,8 +14,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blake2b.NetCore" Version="1.0.1" />
-    <PackageReference Include="PinnedMemory" Version="1.0.1" />
+    <PackageReference Include="Blake2b.NetCore" Version="1.0.3" />
+    <PackageReference Include="PinnedMemory" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
