@@ -47,7 +47,11 @@ public sealed class SecureRandom : Random, IDisposable
 
         Span<byte> osSeed = stackalloc byte[_digest.GetLength()];
         RandomNumberGenerator.Fill(osSeed);
+
+        _seedCounter++;
         AddSeedMaterial(osSeed.ToArray());
+
+        _seedCounter++;
         AddSeedMaterial(NextCounterValue());
     }
 
